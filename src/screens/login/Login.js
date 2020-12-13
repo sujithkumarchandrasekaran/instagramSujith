@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, CardContent, Typography, FormControl, Input, InputLabel, Button } from '@material-ui/core';
+import { Card, CardContent, Typography, FormControl, Input, InputLabel, Button , FormHelperText} from '@material-ui/core';
 import './Login.css';
 import Config from '../../common/config';
 
@@ -47,11 +47,13 @@ export default class Login extends Component {
                         <FormControl fullWidth required margin="normal" size="medium" variant="standard">
                             <InputLabel htmlFor="username">Username</InputLabel>
                             <Input type="text" onChange={this.getUsername} />
+                            <FormHelperText error className={this.state.usernameReq}>Enter the User Name</FormHelperText>
 
                         </FormControl>
                         <FormControl fullWidth required margin="normal" size="medium" variant="standard">
                             <InputLabel htmlFor="password">Password</InputLabel>
                             <Input type="password" onChange={this.getPassword} />
+                            <FormHelperText error className={this.state.passwordReq}>Valid password is required</FormHelperText>
 
                         </FormControl>
 
