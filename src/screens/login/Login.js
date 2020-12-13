@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Card, CardContent, Typography, FormControl, Input, InputLabel, Button , FormHelperText} from '@material-ui/core';
+import { Card, CardContent, Typography, FormControl, Input, InputLabel, Button, FormHelperText, CardActions } from '@material-ui/core';
 import './Login.css';
 import Config from '../../common/config';
+import DynamicHeader from '../../common/header/DynamicHeader';
 
 export default class Login extends Component {
 
@@ -32,41 +33,52 @@ export default class Login extends Component {
     // Redirect to Home Page
     gotoHome = () => {
 
-        alert("home page");
+        this.setState({ incorrectVal: "dispNone" });
+        alert("Home page to come");
+
     }
 
     render() {
         return (
             <div>
-                <Card className="login-card" >
-                    <CardContent>
+                <DynamicHeader title="Image Viewer">
 
-                        <FormControl margin="normal" size="big" variant="standard">
-                            <Typography variant="h5" component="h5" color="textPrimary"
-                            >LOGIN</Typography>
-                        </FormControl>
+                    <Card className="loginCard" >
 
-                        <FormControl fullWidth required margin="normal" size="medium" variant="standard">
-                            <InputLabel htmlFor="username">Username</InputLabel>
-                            <Input type="text" onChange={this.getUsername} />
-                            <FormHelperText error className={this.state.usernameReq}>Enter the User Name</FormHelperText>
-                        </FormControl>
+                        <CardContent>
 
-                        <FormControl fullWidth required margin="normal" size="medium" variant="standard">
-                            <InputLabel htmlFor="password">Password</InputLabel>
-                            <Input type="password" onChange={this.getPassword} />
-                            <FormHelperText error className={this.state.passwordReq}>Valid password is required</FormHelperText>
-                        </FormControl>
+                            <FormControl margin="normal" size="medium" variant="standard">
+                                <Typography variant="h5" component="h5" color="textPrimary">
+                                LOGIN
+                                </Typography>
+                            </FormControl>
 
-                        <FormHelperText error className={this.state.incorrectVal}>Incorrect username and/or password</FormHelperText>
+                            <FormControl fullWidth required margin="normal" size="medium" variant="standard">
+                                <InputLabel htmlFor="username">Username</InputLabel>
+                                <Input type="text" onChange={this.getUsername} />
+                                <FormHelperText error className={this.state.usernameReq}>Enter the User Name</FormHelperText>
+                            </FormControl>
 
-                        <FormControl margin="normal" size="medium" variant="standard">
-                            <Button variant="contained" color="primary" onClick={this.loginHandler}>LOGIN</Button>
-                        </FormControl>
+                            <FormControl fullWidth required margin="normal" size="medium" variant="standard">
+                                <InputLabel htmlFor="password">Password</InputLabel>
+                                <Input type="password" onChange={this.getPassword} />
+                                <FormHelperText error className={this.state.passwordReq}>Valid password is required</FormHelperText>
+                            </FormControl>
 
-                    </CardContent>
+                            <FormHelperText error className={this.state.incorrectVal}>Incorrect username and/or password</FormHelperText>
 
-                </Card>
+                            <CardActions>
+                                <FormControl margin="normal" size="medium" variant="standard">
+                                    <Button variant="contained" color="primary" onClick={this.loginHandler}>LOGIN</Button>
+                                </FormControl>
+                            </CardActions>
+
+
+                        </CardContent>
+
+                    </Card>
+
+                </DynamicHeader>
             </div>
         )
     }
