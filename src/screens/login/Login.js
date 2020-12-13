@@ -40,22 +40,25 @@ export default class Login extends Component {
             <div>
                 <Card className="login-card" >
                     <CardContent>
+
                         <FormControl margin="normal" size="big" variant="standard">
                             <Typography variant="h5" component="h5" color="textPrimary"
                             >LOGIN</Typography>
                         </FormControl>
+
                         <FormControl fullWidth required margin="normal" size="medium" variant="standard">
                             <InputLabel htmlFor="username">Username</InputLabel>
                             <Input type="text" onChange={this.getUsername} />
                             <FormHelperText error className={this.state.usernameReq}>Enter the User Name</FormHelperText>
-
                         </FormControl>
+
                         <FormControl fullWidth required margin="normal" size="medium" variant="standard">
                             <InputLabel htmlFor="password">Password</InputLabel>
                             <Input type="password" onChange={this.getPassword} />
                             <FormHelperText error className={this.state.passwordReq}>Valid password is required</FormHelperText>
-
                         </FormControl>
+
+                        <FormHelperText error className={this.state.incorrectVal}>Incorrect username and/or password</FormHelperText>
 
                         <FormControl margin="normal" size="medium" variant="standard">
                             <Button variant="contained" color="primary" onClick={this.loginHandler}>LOGIN</Button>
