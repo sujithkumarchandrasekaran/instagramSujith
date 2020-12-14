@@ -35,7 +35,8 @@ export default class Login extends Component {
 
         this.setState({ incorrectVal: "dispNone" });
         alert("Home page to come");
-
+        window.sessionStorage.setItem('access-token', Config.auth["access-token"]);
+        this.props.history.push('/home/');
     }
 
     render() {
