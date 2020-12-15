@@ -1,26 +1,25 @@
-/*Page with Header*/
-.main-container {
+.headerMain {
     width: 100%;
 }
 
-.page-header {
+.headerPage {
     background-color: #263238;
     vertical-align: middle;
     position: static;
     margin-bottom: 1%;
 }
 
-.title-text {
+.textTitle {
     color: #fff;
     font-size: 18px;
 }
 
-.page-body {
+.headerBody {
     width: 100%;
 }
 
-.home-link,
-.home-link:hover {
+.logoname,
+.logoname:hover {
     color: white;
     text-decoration: none;
 }

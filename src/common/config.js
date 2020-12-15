@@ -5,7 +5,7 @@ var Config = {
     },
     "auth": {
 
-        "access-token": "IGQVJYTlpXdFlELVNQbHZANVDFTN0VDYVIxQnNmaGQ5Y0ZAkZAFlYaThhSEpEaDRKTHRXRkt5R2xWWXM2NHNMNDdhYXRnODZAON2RTVmFjbC12cEM5TUVMZAk1rQ0RVRzZAQeC1YWVF3aV9CbjJvY3RYYjg0V3ZAwVHhBRW8wWlFj"
+        "access-token": "IGQVJWYVY1LVF2Y1BsT0thTEg1X2RINUlKbFU1T1ZAUYkQzaVozTDE4Y2EwcXpfRDNub0thS2VYenlOaEQ3N05WM1ZA5ZAzhIWkc2UkxldXNMdTlxZADFjc29ZAY3lkOVBzWEpRTXR3OGFnbl9CcmVTSUZA5eTJmZAXFISjRiaG9r"
 	},
     "api":
     {
@@ -24,3 +24,4 @@ var Config = {
     }
 };
 export default Config;
+

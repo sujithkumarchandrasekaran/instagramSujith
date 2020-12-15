@@ -1,0 +1,24 @@
+.post {
+    height: 40%;
+    width: 40%;
+    min-height: 400px;
+    min-width: 400px;
+    margin: 2%;
+}
+
+.postcontent,
+.postfooter,
+.postheader {
+    margin: 4%;
+    padding: 4%;
+}
+
+.textbold {
+    font-size: 1rem;
+    font-weight: 750;
+}
+
+.textlite {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
