@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Box, Card, CardContent, CardActions, CardHeader, Typography } from '@material-ui/core';
 import PostContent from '../../common/post/PostContent';
+import PostCaption from '../../common/post/PostCaption';
+// import PostLikes from '../../common/post/PostLikes';
+// import PostComments from '../../common/post/PostComments';
 import DynamicHeader from '../../common/header/DynamicHeader';
+// import Search from '../../common/search/Search';
 import ProfileIcon from '../../common/profile/ProfileIcon';
 import './Home.css';
 import Config from '../../common/config';
@@ -10,19 +14,21 @@ export default class Home extends Component {
     constructor() {
         super();
         this.state = {
-            searchPattern: "",
             posts: [],
             userPosts: []
         }
         this.logoutUser = this.logoutUser.bind(this);
+        // this.redirectUserToAccountsPage = this.redirectUserToAccountsPage.bind(this);
     }
 
+
+    // Logout user when he clicks on the menu option Logout
     logoutUser = () => {
         sessionStorage.clear();
         this.props.history.replace('/');
     }
 
-    // Convert post date to DD/MM/YYYY HH:MM:SS
+    // Convert post date from ISODateTime to DD/MM/YYYY HH:MM:SS
     covertDate = (x) => {
         let date = new Date(x);
         let dd = date.getDate();
@@ -33,15 +39,20 @@ export default class Home extends Component {
             ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
     };
 
+    // Redirect user to his profile page when he clicks on My Account
+    // redirectUserToAccountsPage = () => this.props.history.push('/profile');
 
+    // Get component profile avatar with Menu Options and associated Handlers
     getProfileAvatar = () => {
         return (
             <Box ml="auto" display="flex" flexDirection="row" alignItems="center">
+                {/* <Search onChange={this.filterPost} /> */}
                 <ProfileIcon type="avatarWithMenu" menuOptions={['My Account', 'Logout']}
                     handlers={[this.redirectUserToAccountsPage, this.logoutUser]} />
             </Box>);
     };
 
+    // Fetch user's post by making an API call
     async componentDidMount() {
         if (!Config.api.mock) {
             let accessToken = window.sessionStorage.getItem("access-token");
@@ -61,7 +72,7 @@ export default class Home extends Component {
                 posts[i].timestamp = details.timestamp;
                 posts[i].comments = [];
                 posts[i].isLiked = false;
-                posts[i].numLikes = Math.round(100 + Math.random() * 100);
+                posts[i].numLikes = 2000;
             }
             this.setState({ userPosts: posts });
             this.setState({ posts: posts.filter(x => true) });
@@ -85,9 +96,14 @@ export default class Home extends Component {
                                             </CardHeader>
                                             <CardContent className="postcontent">
                                                 <PostContent media={userPost.media_url} mediaId={userPost.id} />
-                                                {/* <PostCaption text={userPost.caption} /> */}
+                                                <PostCaption text={userPost.caption} />
                                             </CardContent>
-
+                                            {/* <CardActions className="postfooter">
+                                                <Box width="100%" display="flex" flexDirection="column" alignItems="left">
+                                                    <PostLikes likes={userPost.numLikes} />
+                                                    <PostComments baseId={userPost.id} postUser={userPost.username} />
+                                                </Box>
+                                            </CardActions> */}
                                         </Card>
                                     ))
                                 }
