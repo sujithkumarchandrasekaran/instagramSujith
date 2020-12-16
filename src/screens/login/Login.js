@@ -21,7 +21,7 @@ export default class Login extends Component {
     getUsername = (e) => this.setState({ usernameVal: e.target.value, usernameReq: "dispNone" });
     getPassword = (e) => this.setState({ passwordVal: e.target.value, passwordReq: "dispNone" });
 
-    //Verify Credentials
+
     loginHandler = (e) => {
         (!this.state.usernameVal) ? this.setState({ usernameReq: "dispBlock" }) : this.setState({ usernameReq: "dispNone" });
         (!this.state.passwordVal) ? this.setState({ passwordReq: "dispBlock" }) : this.setState({ passwordReq: "dispNone" });
@@ -30,7 +30,7 @@ export default class Login extends Component {
             this.gotoHome() : this.setState({ incorrectVal: "dispBlock" });
     }
 
-    // Redirect to Home Page
+
     gotoHome = () => {
 
         this.setState({ incorrectVal: "dispNone" });

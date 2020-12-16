@@ -15,6 +15,7 @@ export default class Home extends Component {
             userPosts: []
         }
         this.logoutUser = this.logoutUser.bind(this);
+        this.gotoProfile = this.gotoProfile.bind(this);
     }
 
 
@@ -22,6 +23,8 @@ export default class Home extends Component {
         sessionStorage.clear();
         this.props.history.replace('/');
     }
+
+    gotoProfile = () => this.props.history.push('/profile');
 
     covertDate = (x) => {
         let date = new Date(x);
@@ -33,15 +36,13 @@ export default class Home extends Component {
             ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
     };
 
-    // Redirect user to his profile page when he clicks on My Account
-    // redirectUserToAccountsPage = () => this.props.history.push('/profile');
 
 
     getProfileAvatar = () => {
         return (
             <Box ml="auto" display="flex" flexDirection="row" alignItems="center">
-                       <ProfileIcon type="avatarWithMenu" menuOptions={['My Account', 'Logout']}
-                    handlers={[this.redirectUserToAccountsPage, this.logoutUser]} />
+                <ProfileIcon type="avatarWithMenu" menuOptions={['My Account', 'Logout']}
+                    handlers={[this.gotoProfile, this.logoutUser]} />
             </Box>);
     };
 

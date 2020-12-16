@@ -1,0 +1,22 @@
+.profileDetail .MuiAvatarCircle {
+    width: 150px;
+    height: 150px;
+}
+
+.imageGrid {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalContent {
+    background-color: white;
+    border-radius: 1%;
+}
