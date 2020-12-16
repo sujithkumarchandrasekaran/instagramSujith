@@ -4,8 +4,9 @@ import PostContent from '../../common/post/PostContent';
 import PostCaption from '../../common/post/PostCaption';
 import DynamicHeader from '../../common/header/DynamicHeader';
 import ProfileIcon from '../../common/profile/ProfileIcon';
-import './Home.css';
 import Config from '../../common/config';
+import './Home.css';
+
 
 export default class Home extends Component {
     constructor() {
@@ -18,13 +19,17 @@ export default class Home extends Component {
         this.gotoProfile = this.gotoProfile.bind(this);
     }
 
-
+    // to log out of the application
     logoutUser = () => {
         sessionStorage.clear();
         this.props.history.replace('/');
     }
 
+    // to go to the profile page
     gotoProfile = () => this.props.history.push('/profile');
+
+
+    // to convert the date into DD/MM/YYYY HH:MM:SS
 
     covertDate = (x) => {
         let date = new Date(x);
@@ -37,7 +42,7 @@ export default class Home extends Component {
     };
 
 
-
+    // to get the profile ICON using Avatar Material UI from ProfileIcon
     getProfileAvatar = () => {
         return (
             <Box ml="auto" display="flex" flexDirection="row" alignItems="center">
@@ -46,6 +51,8 @@ export default class Home extends Component {
             </Box>);
     };
 
+
+    // API call for Instagram
 
     async componentDidMount() {
         if (!Config.api.mock) {
@@ -64,9 +71,6 @@ export default class Home extends Component {
                 posts[i].media_url = details.media_url;
                 posts[i].username = details.username;
                 posts[i].timestamp = details.timestamp;
-                posts[i].comments = [];
-                posts[i].isLiked = false;
-                posts[i].numLikes = 2000;
             }
             this.setState({ userPosts: posts });
             this.setState({ posts: posts.filter(x => true) });
@@ -88,10 +92,12 @@ export default class Home extends Component {
                                                 title={<Typography className="textbold" variant="body1">{userPost.username}</Typography>}
                                                 subheader={<Typography className="textlite" variant="subtitle2">{this.covertDate(userPost.timestamp)}</Typography>}>
                                             </CardHeader>
+
                                             <CardContent className="postcontent">
                                                 <PostContent media={userPost.media_url} mediaId={userPost.id} />
                                                 <PostCaption text={userPost.caption} />
                                             </CardContent>
+
 
                                         </Card>
                                     ))

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GridList, GridListTile, Box, Modal, Backdrop, Fade, Typography } from '@material-ui/core';
+import { GridList, GridListTile, Box, Modal, Backdrop, Fade } from '@material-ui/core';
 import PostContent from '../../common/post/PostContent';
 import PostCaption from '../../common/post/PostCaption';
 import DynamicHeader from '../../common/header/DynamicHeader';
@@ -25,10 +25,10 @@ export default class Profile extends Component {
         this.props.history.replace('/');
     }
 
-
+    //Go to the home page
     gotoHome = () => this.props.history.push('/home');
 
-
+    //Get the profile in Avatar Material UI
     getProfileAvatar = () => {
         return (
             <Box ml="auto" display="flex" flexDirection="row" alignItems="center">
@@ -36,7 +36,7 @@ export default class Profile extends Component {
             </Box>);
     };
 
-    // Fetch user's posts by making a API call
+    // API call for Post details
     async componentDidMount() {
         if (!Config.api.mock) {
             let accessToken = window.sessionStorage.getItem("access-token");
@@ -54,20 +54,18 @@ export default class Profile extends Component {
                 posts[i].media_url = details.media_url;
                 posts[i].username = details.username;
                 posts[i].timestamp = details.timestamp;
-                // posts[i].comments = [];
-                // posts[i].isLiked = false;
-                // posts[i].numLikes = ;
+
             }
             this.setState({ userPosts: posts });
         }
     }
 
-    // Handler to open post modal
+    // to open post modal
     openPostDetails = (e) => {
         this.setState({ open: true, userPost: this.state.userPosts.find((post) => post.id === e.target.id) });
     }
 
-    // Handler to close post modal
+    //to close post modal
     closePostDetails = (e) => {
         this.setState({ open: false, userPost: {} });
     }
@@ -79,9 +77,9 @@ export default class Profile extends Component {
                     (this.state.userPosts.length > 0) ?
                         (<Box>
                             <AcctDetails className="profileDetail" userName={this.state.userPosts[0].username} numPosts={this.state.userPosts.length}
-                            fullName="Sujith" follows={5}
-                            followers={50} />
-                            
+                                fullName="Sujith" follows={5}
+                                followers={50} />
+
                             < Box className="imageGrid">
 
                                 <GridList cellHeight={300} cols={3}>
@@ -95,30 +93,26 @@ export default class Profile extends Component {
                             </Box>
 
                             <Modal className="modal" open={this.state.open}
-                                
+
                                 onClose={this.closePostDetails} closeAfterTransition BackdropComponent={Backdrop}>
-                                
+
                                 <Fade in={this.state.open}>
                                     <Box width="60%" display="flex" flexDirection="row" justifyContent="space-evenly" className="modalContent">
-                                        
-                                        <Box m="1%" width="50%" className="image-container" >
-                                        
+
+                                        <Box m="1%" width="50%"  >
                                             {(this.state.userPost.media_url) ? <PostContent media={this.state.userPost.media_url} mediaId={this.state.userPost.id} minWidth="350px" minHeight="350px" /> : ""}
-                                        
                                         </Box>
-                                        
+
                                         <Box m="2%" width="50%" display="flex" flexDirection="column" justifyContent="left" alignItems="center" >
-                                        
                                             <PostHeader postUser={this.state.userPost.username} postedTime={this.state.userPost.timestamp} />
-
                                             <PostCaption mb="auto" text={this.state.userPost.caption} />
-
                                         </Box>
+
                                     </Box>
                                 </Fade>
 
                             </Modal>
-                        
+
                         </Box>) : ""}
             </DynamicHeader>
         );

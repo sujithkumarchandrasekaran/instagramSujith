@@ -3,6 +3,7 @@ import { Box, Typography, Button, Modal, Backdrop, Fade, FormControl, InputLabel
 import EditIcon from "@material-ui/icons/Edit";
 import { makeStyles } from '@material-ui/core/styles';
 import ProfileIcon from './ProfileIcon';
+import AcctIcon from './AcctIcon';
 
 const useStyles = makeStyles({
 
@@ -55,12 +56,12 @@ export default function ProfileDetails(props) {
     const [error, setError] = React.useState("dispNone");
     const classes = useStyles();
 
-    const modalOpen = () => {
+    const openModal = () => {
         setError("dispNone");
         setOpen(true);
     }
 
-    const modalClose = () => {
+    const closeModal = () => {
         setError("dispNone");
         setInput(null);
         setOpen(false);
@@ -77,47 +78,62 @@ export default function ProfileDetails(props) {
             setError("dispBlock");
         } else {
             setFullName(input);
-            modalClose();
+            closeModal();
         }
     };
 
     return (
         <Box width="50%" display="flex" flexDirection="row" alignItems="center" justifyContent="space-evenly" className={classes.profileDetails + " " + props.className}>
-            <ProfileIcon type="avatarOnly" />
+
+            <AcctIcon />
+
             <Box width="50%" display="flex" flexDirection="column" alignContent="space-around" >
-                <Typography variant="h5">{props.userName}</Typography>
+
+                <Typography variant="h4">{props.userName}</Typography>
+
                 <Box display="flex" flexDirection="row" justifyContent="space-between">
-                    <Typography variant="body2">Posts: {props.numPosts}</Typography>
-                    <Typography gutterBottom variant="body2">Follows: {props.follows}</Typography>
-                    <Typography variant="body2">Followed By: {props.followers}</Typography>
+                    <Typography variant="h6">Posts: {props.numPosts}</Typography>
+                    <Typography gutterBottom variant="h6">Follows: {props.follows}</Typography>
+                    <Typography variant="h6">Followed By: {props.followers}</Typography>
                 </Box>
-                <Typography variant="h6">
+
+                <Typography variant="h4">
                     {fullName}
-                    <Button className={classes.btnEdit} variant="contained" color="secondary" onClick={modalOpen}>
+                    <Button className={classes.btnEdit} variant="contained" color="secondary" onClick={openModal}>
                         <EditIcon fontSize="inherit" />
                     </Button>
                 </Typography>
+
             </Box>
-            <Modal className={classes.modal} open={open} onClose={modalClose} closeAfterTransition BackdropComponent={Backdrop}>
+
+            <Modal className={classes.modal} open={open} onClose={closeModal} closeAfterTransition BackdropComponent={Backdrop}>
+
                 <Fade in={open}>
+
                     <div className={classes.modalContent}>
+
                         <FormControl variant="standard">
                             <Typography variant="h5" component="h5" color="textPrimary">
                                 EDIT
                             </Typography>
                         </FormControl>
+
                         <FormControl required variant="standard">
                             <InputLabel htmlFor="field-fullname">Fullname</InputLabel>
                             <Input type="text" onChange={getName} />
                             <FormHelperText error className={error}>required</FormHelperText>
                         </FormControl>
+
                         <FormControl variant="standard">
-                            <Button className={classes.btnUpdate} variant="contained" color="primary" id="btn-edit" onClick={updateName}>
+                            <Button className={classes.btnUpdate} variant="contained" color="primary" onClick={updateName}>
                                 UPDATE
                             </Button>
                         </FormControl>
+
                     </div>
+
                 </Fade>
+
             </Modal>
         </Box>
     );

@@ -11,13 +11,13 @@ const useStyles = makeStyles({
         margin: 0
     },
 
-    menuItemSeparator: {
+    seperator: {
         marginLeft: "15px",
         marginRight: "15px"
     }
 });
 
-// Generic Profile Avatar Component
+
 export default function ProfileIcon(props) {
 
     const [anchor, setAnchor] = React.useState(null);
@@ -26,7 +26,7 @@ export default function ProfileIcon(props) {
         setAnchor(event.currentTarget);
     }
 
-    // Handler method to close profile menu 
+    // close profile menu 
     const handleClose = (handler) => {
         setAnchor(null);
     }
@@ -36,23 +36,23 @@ export default function ProfileIcon(props) {
                 if (props.type === "avatarWithMenu") {
                     return (<div>
                         <IconButton className={classes.userAvatar} onClick={handleOpen}>
-                            <Avatar alt="AS"  src={ProfileImage} /></IconButton>
-                        <Menu id="profile-menu" anchorEl={anchor} keepMounted open={Boolean(anchor)} onClose={handleClose}>
+                            <Avatar alt="AS" src={ProfileImage} /></IconButton>
+                        <Menu anchorEl={anchor} keepMounted open={Boolean(anchor)} onClose={handleClose}>
                             {props.menuOptions.map((menuItem, index) => (
                                 <div key={"menu-item-" + index} >
                                     <MenuItem onClick={props.handlers[index]}>{menuItem}</MenuItem>
-                                    {(index < props.menuOptions.length - 1) ? <Divider className={classes.menuItemSeparator} /> : ""}
+                                    {(index < props.menuOptions.length - 1) ? <Divider className={classes.seperator} /> : ""}
                                 </div>
                             ))}
-
                         </Menu></div>
                     );
-                } else {
+                }
+                else {
                     return (
-
-                        <Avatar alt="AS"  src={ProfileImage} />
+                        <Avatar alt="AS" src={ProfileImage} />
                     );
-                }})()
+                }
+            })()
             }
         </div>
     );

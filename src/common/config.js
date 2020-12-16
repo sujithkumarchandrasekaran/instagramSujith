@@ -5,8 +5,8 @@ var Config = {
     },
     "auth": {
 
-        "access-token": "IGQVJWeEJ3SVZAHZAWU4T2NwdmYybElLUWVhTlM1LTM0TkVkdDRxTDJ3V2FxTkpJVXpmcXMwTVZAtR2c2NkVOUjV5b1pQcFNiWEJXMTdBMUR5VEI4QXJqU0VtamhSTjFaOEpMbl9TS2tfRHBfRG9UTEdmblE0LUVHLVNpN3NR"
-	},
+        "access-token": "IGQVJYbHRhMUxTSDlxNHBfaExaT1ViZAzhIbUJUR1M3VVlVM053VDhmTERGcFFIbjFaNTVVbU5WeE5GVTVQemlzekRaLVVPVkNHYVlFTXRuOG0yUFV2QkV2aURLd2NVdnBYTDd2U2Vta01BSHFCekZAhcjFNLWoyVzBpWTlz"
+    },
     "api":
     {
         "mock": false,

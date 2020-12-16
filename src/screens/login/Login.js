@@ -4,6 +4,8 @@ import './Login.css';
 import Config from '../../common/config';
 import DynamicHeader from '../../common/header/DynamicHeader';
 
+// http://localhost:3000/ This is the first page in the application
+
 export default class Login extends Component {
 
 
@@ -21,7 +23,7 @@ export default class Login extends Component {
     getUsername = (e) => this.setState({ usernameVal: e.target.value, usernameReq: "dispNone" });
     getPassword = (e) => this.setState({ passwordVal: e.target.value, passwordReq: "dispNone" });
 
-
+    // to loginto the application validate the User and password hard coded config file
     loginHandler = (e) => {
         (!this.state.usernameVal) ? this.setState({ usernameReq: "dispBlock" }) : this.setState({ usernameReq: "dispNone" });
         (!this.state.passwordVal) ? this.setState({ passwordReq: "dispBlock" }) : this.setState({ passwordReq: "dispNone" });
@@ -30,11 +32,9 @@ export default class Login extends Component {
             this.gotoHome() : this.setState({ incorrectVal: "dispBlock" });
     }
 
-
+    // to go to the home page
     gotoHome = () => {
-
         this.setState({ incorrectVal: "dispNone" });
-        // alert("Home page to come");
         window.sessionStorage.setItem('access-token', Config.auth["access-token"]);
         this.props.history.push('/home/');
     }
@@ -50,7 +50,7 @@ export default class Login extends Component {
 
                             <FormControl margin="normal" size="medium" variant="standard">
                                 <Typography variant="h5" component="h5" color="textPrimary">
-                                LOGIN
+                                    LOGIN
                                 </Typography>
                             </FormControl>
 

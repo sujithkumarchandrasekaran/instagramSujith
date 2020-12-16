@@ -34,7 +34,7 @@ export default function PostCaption(props) {
     let caption = (!props.text) ? " " : props.text.split(' ').filter(str => !str.startsWith('#')).join(' ');
     return (
         <Box width="100%" >
-            <Divider className={classes.separator}/>
+            <Divider className={classes.separator} />
             <Typography className={classes.caption} variant="subtitle1">{caption}</Typography>
             <Typography className={classes.hashtags} variant="subtitle2">{hashtags}</Typography>
         </Box>
